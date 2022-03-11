@@ -1,0 +1,17 @@
+.DS_Store
+.git
+.vscode/
+.idea/
+.testing/
+# Backup files / swap
+.bak
+.BAK
+.dpkg-dist
+.swp
+.tmp
+.test
+.backup
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
