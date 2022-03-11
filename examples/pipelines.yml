@@ -1,0 +1,21 @@
+# Previous pipeline you still want to use or have (may not be applicable, just an example)
+- pipeline.id: main
+  queue.type: persisted
+  queue.max_bytes: 1gb
+  path.config: "/etc/logstash/pipelines/main/*.conf"
+  pipeline.workers: 2
+
+# Logstash ECS Corelight Pipeline
+- pipeline.id: ecs-logstash-corelight
+  queue.type: persisted
+  queue.max_bytes: 1gb
+  path.config: "/etc/logstash/pipelines/ecs-logstash-corelight/*.conf"
+  pipeline.workers: 2 # Recommended 1 1/2 times number of cores
+  
+# If using logstash to forward directly to ingest pipeline, ie: not using logstash to do parsing/ETL
+- pipeline.id: ecs-ingest-pipelines-corelight
+  queue.type: persisted
+  queue.max_bytes: 1gb
+  path.config: "/etc/logstash/pipelines/ecs-ingest-pipelines-corelight/*.conf"
+  pipeline.workers: 2
+

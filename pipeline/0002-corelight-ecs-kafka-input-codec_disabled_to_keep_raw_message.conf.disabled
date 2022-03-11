@@ -1,0 +1,57 @@
+# Corelight ECS Logstash Pipeline
+# Git Repository: https://github.com/corelight/ecs-logstash-mappings
+# Authors: Corelight Inc, Brasi Tech LLC
+# License: BSD 3-Clause
+# Support: https://github.com/corelight/ecs-logstash-mappings/issues/new
+# Releases: https://github.com/corelight/ecs-logstash-mappings/releases
+
+input {
+  kafka {
+    # Topic Consumption #
+    # Topic(s) to consume from
+    #topics => [ "corelight" ]
+    #:Example:# to consume topics based on regex. This will consume from all topics starting with "corelight_" except if followed by conn,ssl,files,x509,http,dns
+    #topics_pattern => "corelight_(?!(conn|ssl|files|x509|http|dns)$).*" 
+    #:Example:# to consume topics based on regex. This will consume from all topics starting with "corelight_" and if only followed by conn,ssl,files,x509,http,dns
+    #topics_pattern => "corelight_(conn|ssl|files|x509|http|dns).*" 
+    
+    # This setting should match the number of Kafka partitions for the topic(s) you are consuming from.
+    # Change this if you have customized the number of kafka partitions for the topic AND are needing to scale (up) consumption
+    # Read documentation for more info: https://www.elastic.co/guide/en/logstash/current/plugins-inputs-kafka.html#plugins-inputs-kafka-consumer_threads
+    consumer_threads => 3
+    #bootstrap_servers => "localhost:9092"
+    #bootstrap_servers => "localhost:9092,localhost:9093,localhost:9094" #:Example:# kafka (cluster) with multiple nodes
+    decorate_events => "true"
+    # decorate_events requires kafka plugin 10.7.3
+    #decorate_events => extended
+    #codec => "json"
+    max_poll_records => 500
+    enable_auto_commit => true
+    auto_offset_reset => "earliest"
+    # Set to the naming convention that best suites your environment
+    group_id => "logstash_corelight_group"
+    # Set unique per logstash instance
+    client_id => "logstash_consumer"
+    # Default values for (certain) settings. Annotated by "#:default:#". Only used as FYSA (for your situational awareness)
+    #:default:# auto_commit_interval_ms => 5000 #5 seconds
+    #:default:# connections_max_idle_ms => 540000 #9 minutes
+    #:default:# consumer_threads => 1 
+    #:default:# decorate_events => "none"
+    #:default:# heartbeat_interval_ms => 3000 #3 seconds
+    #:default:# max_poll_interval_ms => 300000 #5 minutes
+    #:default:# max_poll_records => 500
+    #:default:# partition_assignment_strategy => "" #none
+    #:default:# poll_timeout_ms => 100 #.1 seconds
+    #:default:# receive_buffer_bytes => 32768 #32KB
+    #:default:# reconnect_backoff_ms => 50 #.005 seconds
+    #:default:# request_timeout_ms => 40000 #4 seconds
+    #:default:# retry_backoff_ms => 100 #.1 seconds
+    #:default:# session_timeout_ms => 10000 #10 seconds
+    add_field => {
+      "[@metadata][etl][input_application_protocol]" => "kafka"
+      "[@metadata][z_no_reuse][event_type]" => "corelight"
+      "[@metadata][etl][pipeline]" => "input-kafka-58e9c96224f4-20220310.01"
+    }
+    id => "input-kafka-58e9c96224f4"
+  }
+}
