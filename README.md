@@ -2,7 +2,6 @@
 
 ## Logstash Pipeline (This Repository)
 logstash pipeline configurations
-https://github.com/corelight/ecs-logstash-mappings 
 
 ## Elasticsearch templates
 Index templates,component templates, settings, mappings
