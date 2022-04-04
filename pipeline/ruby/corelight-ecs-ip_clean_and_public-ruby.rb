@@ -214,13 +214,11 @@ def filter(event)
     end
   end
 
-  number_of_ip_addresses = clean_ip_addresses.length
+  ip_valid_count = clean_ip_addresses.length
   # Set the clean IP(s) and new parameters...
   if !clean_ip_addresses.empty?
-    # Set the number of ip addresses so we can use array or non array later in pipeline and this script.....##zDamTyILGeKD4H0##
-    event.set("[@metadata][pipeline_internal]#{@orig_ip_address}[number_of_ip_addresses]", number_of_ip_addresses)
     # Use to make array versus non array
-    if number_of_ip_addresses == 1
+    if ip_valid_count == 1
       event.set("#{@parent_field}[ip_version]", version_ip_addresses[0])
       event.set("#{@parent_field}[is_ipv6]", ip_addresses_is_ipv6[0])
       event.set("#{@parent_field}[ip_public]", ip_addresses_public[0])
@@ -246,6 +244,9 @@ def filter(event)
     event.tag("Invalid IP(s) #{not_ip_addresses} found in the field #{@parent_field}")
     #event.set("not_ip_#{@parent_field}", not_ip_addresses)
   end
+  
+  # Set the number of ip addresses so we can use array or non array later in pipeline and this script
+  event.set("#{@parent_field}[ip_valid_count]", ip_valid_count)
 
   return [event]
 end
