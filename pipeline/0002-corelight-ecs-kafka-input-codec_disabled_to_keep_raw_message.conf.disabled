@@ -21,9 +21,9 @@ input {
     consumer_threads => 3
     #bootstrap_servers => "localhost:9092"
     #bootstrap_servers => "localhost:9092,localhost:9093,localhost:9094" #:Example:# kafka (cluster) with multiple nodes
-    decorate_events => "true"
     # decorate_events requires kafka plugin 10.7.3
-    #decorate_events => extended
+    decorate_events => "extended"
+    #:default:# decorate_events => "none"
     #codec => "json"
     max_poll_records => 500
     enable_auto_commit => true
