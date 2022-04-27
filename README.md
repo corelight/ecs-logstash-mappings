@@ -1,3 +1,5 @@
+# Corelight ECS Logstash Pipeline
+
 # Git Repository Definitions
 
 ## Elasticsearch templates
