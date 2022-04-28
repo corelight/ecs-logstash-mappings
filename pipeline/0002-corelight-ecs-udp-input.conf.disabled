@@ -6,7 +6,7 @@
 # Releases: https://github.com/corelight/ecs-logstash-mappings/releases
 
 input {
-  tcp {
+  udp {
     queue_size => 15000
     port => 8516
     codec => "json"
@@ -16,8 +16,8 @@ input {
       "[@metadata][etl][format_applied]" => "json"
       "[@metadata][etl][format_final_codec]" => "json"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-udp-710620f0c005-20220404.01"
+      "[@metadata][etl][pipeline]" => "input-udp-710620f0c005-20220428.01"
     }
-    id => "input-tcp-710620f0c005"
+    id => "input-udp-710620f0c005"
   }
 }
