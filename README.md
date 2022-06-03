@@ -1,11 +1,14 @@
-# Git Repository Definitions
+# Corelight ECS Logstash Pipeline
 
-## Logstash Pipeline (This Repository)
-logstash pipeline configurations
+# Git Repository Definitions
 
 ## Elasticsearch templates
 Index templates,component templates, settings, mappings
 https://github.com/corelight/ecs-templates
+
+## Logstash Pipeline (This Repository)
+logstash pipeline configurations
+https://github.com/corelight/ecs-logstash-mappings
 
 ## Ingest Pipeline
 Ingest pipeline configurations

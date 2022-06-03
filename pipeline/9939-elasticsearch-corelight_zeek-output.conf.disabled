@@ -16,13 +16,14 @@ output {
         #user => "$USER"
         #password => "$PASSWORD"
         
-        index => "%{[@metadata][temporary_metadata_index_name_prefix]}-%{[@metadata][temporary_metadata_index_name_suffix]}"
-        action => "create"
+        # Use data streams via data stream auto_routing, supported only in logstash => 7.13
         #data_stream => "true"
         #data_stream_auto_routing => "true"
-        #data_stream_type => "%{[data_stream][dataset]}"
-        #data_stream_dataset => "%{[data_stream][dataset]}"
-        #data_stream_namespace => "%{[data_stream][namespace]}"
+        
+        # Use data streams via default index method, supported all versions
+        #index => "%{[@metadata][temporary_metadata_index_name_prefix]}-%{[@metadata][temporary_metadata_index_name_suffix]}"
+        #action => "create"
+        
         id => "output-elasticsearch-47420e6931e4"
       }
     }

@@ -4,15 +4,16 @@ input {
     codec => "json"
     start_position => "beginning"
     mode => "tail"
-    sincedb_write_interval => "2 seconds"
-    sincedb_clean_after => "2 seconds"
+    sincedb_path => "/dev/null"
+    #sincedb_write_interval => "2 seconds"
+    #sincedb_clean_after => "2 seconds"
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "file"
       "[@metadata][etl][format_is_json]" => "true"
       "[@metadata][etl][format_applied]" => "json"
       "[@metadata][etl][format_final_codec]" => "json"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-tcp-059d98d25043-20220310.01"
+      "[@metadata][etl][pipeline]" => "input-tcp-059d98d25043-20220427.01"
     }
     id => "input-file-059d98d25043"
   }
