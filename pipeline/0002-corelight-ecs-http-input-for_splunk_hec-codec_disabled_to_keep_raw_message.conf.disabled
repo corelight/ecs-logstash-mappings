@@ -6,19 +6,19 @@
 # Releases: https://github.com/corelight/ecs-logstash-mappings/releases
 
 input {
-  udp {
+  http {
     #ecs_compatibility => "disabled" # If using logstash version 8.0.0 or higher, uncomment this line
-    queue_size => 15000
-    port => 8516
-    codec => "json"
+    #codec => "json"
+    port => 8443
+    #ssl => true
+    #ssl_certificate => "$PATH"
+    #ssl_key => "$PATH"
+    #ssl_verify_mode => "none"
     add_field => {
-      "[@metadata][etl][input_application_protocol]" => "udp"
-      "[@metadata][etl][format_is_json]" => "true"
-      "[@metadata][etl][format_applied]" => "json"
-      "[@metadata][etl][format_final_codec]" => "json"
+      "[@metadata][etl][input_application_protocol]" => "http"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-udp-710620f0c005-20220428.01"
+      "[@metadata][etl][pipeline]" => "input-http-09996722cf53-20220622.01"
     }
-    id => "input-udp-710620f0c005"
+    id => "input-http-09996722cf53"
   }
 }
