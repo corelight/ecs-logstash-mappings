@@ -11,6 +11,7 @@
   queue.max_bytes: 4gb
   path.config: "/etc/logstash/pipelines/ecs-logstash-corelight/*.conf"
   pipeline.workers: 2
+  #pipeline.ecs_compatibility: disabled # can not be set with datastream output
   # Tuning Recommendations
   # use memory (make sure your box has enough memory and you have increased heap in jvm.options)
   # queue.type: memory
