@@ -1,0 +1,35 @@
+# Corelight ECS Logstash Pipeline
+# Git Repository: https://github.com/corelight/ecs-logstash-mappings
+# Authors: Corelight Inc, Brasi Tech LLC
+# License: BSD 3-Clause
+# Support: https://github.com/corelight/ecs-logstash-mappings/issues/new
+# Releases: https://github.com/corelight/ecs-logstash-mappings/releases
+
+input {
+  tcp {
+    #ecs_compatibility => "disabled" # If using logstash version 8.0.0 or higher, uncomment this line
+    dns_reverse_lookup_enabled => false
+    port => 8615
+    #codec => "json"
+    ssl_enable = true
+    
+    #### SSL/TLS Parameters to change and set
+    # Path to certificate in PEM format. This certificate will be presented to the connecting clients.
+    ssl_cert => "system path to cert"
+    # The path to the private key corresponding to the specified certificate (PEM format).
+    ssl_key => "system path to key"
+    # SSL key passphrase for the private key.
+    #ssl_key_passphrase => "ssl_key key passphrase"
+    # Verify the identity of the other end of the SSL connection against the CA. For input, sets the field ssl subject to that of the client certificate.
+    #ssl_verify = false
+    # Validate client certificate or certificate chain against these authorities. You can define multiple files or paths. All the certificates will be read and added to the trust store.
+    #ssl_certificate_authorities => [ "system file path" ]
+    
+    add_field => {
+      "[@metadata][etl][input_application_protocol]" => "tcp"
+      "[@metadata][z_no_reuse][event_type]" => "corelight"
+      "[@metadata][etl][pipeline]" => "input-tcp-ssl-c341de6acffd-20220707.01"
+    }
+    id => "input-tcp-ssl-c341de6acffd"
+  }
+}
