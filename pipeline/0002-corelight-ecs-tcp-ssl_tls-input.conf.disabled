@@ -10,6 +10,7 @@ input {
     #ecs_compatibility => "disabled" # If using logstash version 8.0.0 or higher, uncomment this line       
     dns_reverse_lookup_enabled => false
     port => 8615
+    codec => "json"
     ssl_enable = true
     
     #### SSL/TLS Parameters to change and set
