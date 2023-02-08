@@ -1,7 +1,0 @@
-output {
-  file {
-    path => "/tmp/corelight_test.log.parsed"
-    #codec => "json_lines"
-    id => "output-file-3f10ef9dbffc"
-  }
-}
