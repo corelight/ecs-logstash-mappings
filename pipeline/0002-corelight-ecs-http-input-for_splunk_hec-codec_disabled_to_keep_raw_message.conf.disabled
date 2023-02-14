@@ -15,9 +15,9 @@ input {
     #ssl_key => "$PATH"
     #ssl_verify_mode => "none"
     add_field => {
-      "[@metadata][etl][input_application_protocol]" => "http"
+      "[labels][etl][input_application_protocol]" => "http"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-http-09996722cf53-20220622.01"
+      "[labels][etl][pipeline]" => "input-http-09996722cf53-20220622.01"
     }
     id => "input-http-09996722cf53"
   }

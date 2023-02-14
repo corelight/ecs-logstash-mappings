@@ -12,9 +12,9 @@ input {
     port => 8516
     #codec => "json"
     add_field => {
-      "[@metadata][etl][input_application_protocol]" => "udp"
+      "[labels][etl][input_application_protocol]" => "udp"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-udp-2ee546f22e4d-20220428.01"
+      "[labels][etl][pipeline]" => "input-udp-2ee546f22e4d-20220428.01"
     }
     id => "input-udp-2ee546f22e4d"
   }
