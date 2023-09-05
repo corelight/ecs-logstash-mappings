@@ -12,7 +12,7 @@ filter {
     mutate {
       add_field => {
         "[@metadata][temporary_metadata_index_strategy]" => "$Corelight_LS_Index_Strategy"
-        "[labels][etl][pipeline]" => "filter-mutate-61b088ccda25-20220310.01"
+        "[@metadata][etl][pipeline]" => "filter-mutate-61b088ccda25-20220310.01"
       }
       tag_on_failure => "_mutate_error-61b088ccda25"
       id => "filter-mutate-61b088ccda25"

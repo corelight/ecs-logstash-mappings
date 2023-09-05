@@ -48,9 +48,9 @@ input {
     #:default:# retry_backoff_ms => 100 #.1 seconds
     #:default:# session_timeout_ms => 10000 #10 seconds
     add_field => {
-      "[labels][etl][input_application_protocol]" => "kafka"
+      "[@metadata][etl][input_application_protocol]" => "kafka"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[labels][etl][pipeline]" => "input-kafka-58e9c96224f4-20220310.01"
+      "[@metadata][etl][pipeline]" => "input-kafka-58e9c96224f4-20220310.01"
     }
     id => "input-kafka-58e9c96224f4"
   }

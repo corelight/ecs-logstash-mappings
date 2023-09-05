@@ -15,12 +15,12 @@ input {
     #ssl_key => "$PATH"
     #ssl_verify_mode => "none"
     add_field => {
-      "[labels][etl][input_application_protocol]" => "http"
-      "[labels][etl][format_is_json]" => "true"
-      "[labels][etl][format_applied]" => "json"
-      "[labels][etl][format_final_codec]" => "json"
+      "[@metadata][etl][input_application_protocol]" => "http"
+      "[@metadata][etl][format_is_json]" => "true"
+      "[@metadata][etl][format_applied]" => "json"
+      "[@metadata][etl][format_final_codec]" => "json"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[labels][etl][pipeline]" => "input-http-7f1d6cbed2f4-20220622.01"
+      "[@metadata][etl][pipeline]" => "input-http-7f1d6cbed2f4-20220622.01"
     }
     id => "input-http-7f1d6cbed2f4"
   }

@@ -12,9 +12,9 @@ input {
     port => 8515
     #codec => "json"
     add_field => {
-      "[labels][etl][input_application_protocol]" => "tcp"
+      "[@metadata][etl][input_application_protocol]" => "tcp"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[labels][etl][pipeline]" => "input-tcp-3bbb9731f13a-20220310.01"
+      "[@metadata][etl][pipeline]" => "input-tcp-3bbb9731f13a-20220310.01"
     }
     id => "input-tcp-3bbb9731f13a"
   }

@@ -12,12 +12,12 @@ input {
     port => 8515
     codec => "json"
     add_field => {
-      "[labels][etl][input_application_protocol]" => "tcp"
-      "[labels][etl][format_is_json]" => "true"
-      "[labels][etl][format_applied]" => "json"
-      "[labels][etl][format_final_codec]" => "json"
+      "[@metadata][etl][input_application_protocol]" => "tcp"
+      "[@metadata][etl][format_is_json]" => "true"
+      "[@metadata][etl][format_applied]" => "json"
+      "[@metadata][etl][format_final_codec]" => "json"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[labels][etl][pipeline]" => "input-tcp-8782041b68e4-20220310.01"
+      "[@metadata][etl][pipeline]" => "input-tcp-8782041b68e4-20220310.01"
     }
     id => "input-tcp-8782041b68e4"
   }

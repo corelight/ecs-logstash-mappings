@@ -26,9 +26,9 @@ input {
     #ssl_certificate_authorities => [ "system file path" ]
     
     add_field => {
-      "[labels][etl][input_application_protocol]" => "tcp"
+      "[@metadata][etl][input_application_protocol]" => "tcp"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[labels][etl][pipeline]" => "input-tcp-ssl-c341de6acffd-20220707.01"
+      "[@metadata][etl][pipeline]" => "input-tcp-ssl-c341de6acffd-20220707.01"
     }
     id => "input-tcp-ssl-c341de6acffd"
   }
