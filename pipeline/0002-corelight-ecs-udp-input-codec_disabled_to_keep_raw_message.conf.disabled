@@ -7,7 +7,7 @@
 
 input {
   udp {
-    #ecs_compatibility => "disabled" # If using logstash version 8.0.0 or higher, uncomment this line
+    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
     queue_size => 15000
     port => 8516
     #codec => "json"

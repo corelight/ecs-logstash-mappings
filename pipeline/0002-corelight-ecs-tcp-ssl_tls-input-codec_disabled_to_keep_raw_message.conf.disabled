@@ -7,7 +7,7 @@
 
 input {
   tcp {
-    #ecs_compatibility => "disabled" # If using logstash version 8.0.0 or higher, uncomment this line
+    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
     dns_reverse_lookup_enabled => false
     port => 8615
     #codec => "json"
