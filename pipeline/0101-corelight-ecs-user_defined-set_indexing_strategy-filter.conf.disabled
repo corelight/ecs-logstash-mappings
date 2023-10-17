@@ -6,13 +6,11 @@
 # Releases: https://github.com/corelight/ecs-logstash-mappings/releases
 
 filter {
-  # If you use datastreams, then replace the value below of "$Corelight_LS_Index_Strategy" with "datastream"
-  # If you do not use datastreams (ie: the previous index strategy), then replace the value below of "$Corelight_LS_Index_Strategy" with "default"
   if [@metadata][z_no_reuse][event_type] == "corelight" {
     mutate {
       add_field => {
-        "[@metadata][temporary_metadata_index_strategy]" => "$Corelight_LS_Index_Strategy"
-        "[@metadata][etl][pipeline]" => "filter-mutate-61b088ccda25-20220310.01"
+        "[@metadata][temporary_metadata_index_strategy]" => "VAR_CORELIGHT_INDEX_STRATEGY"
+        "[@metadata][etl][pipeline]" => "filter-mutate-61b088ccda25-2023101701"
       }
       tag_on_failure => "_mutate_error-61b088ccda25"
       id => "filter-mutate-61b088ccda25"
