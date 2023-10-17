@@ -25,7 +25,7 @@ output {
           #data_stream_auto_routing => "true"
         
           # Use data streams via default index method, supported all versions
-          #index => "%{[@metadata][temporary_metadata_index_name_prefix]}-%{[@metadata][temporary_metadata_index_name_suffix]}"
+          #index => "%{[@metadata][temporary_metadata_index_name_dataset_prefix]}-%{[@metadata][temporary_metadata_index_name_dataset_suffix]}"
           #action => "create"
         
           id => "output-elasticsearch-47420e6931e4"
@@ -40,7 +40,7 @@ output {
           #user => "$USER"
           #password => "$PASSWORD"
         
-          index => "<%{[@metadata][temporary_metadata_index_name_prefix]}-%{[@metadata][temporary_metadata_index_name_suffix]}-{now/d}>"
+          index => "<%{[@metadata][temporary_metadata_index_name_dataset_prefix]}-%{[@metadata][temporary_metadata_index_name_dataset_suffix]}-{now/d}>"
           #action => "create"
           manage_template => false
           ilm_enabled => auto # if receiving logstash 403 auth error, then change to false if related to logstash trying to "auto" manage the "logstash-*" index
@@ -65,7 +65,7 @@ output {
           #data_stream_auto_routing => "true"
         
           # Use data streams via default index method, supported all versions
-          #index => "%{[@metadata][temporary_metadata_index_name_prefix]}-%{[@metadata][temporary_metadata_index_name_suffix]}"
+          #index => "%{[@metadata][temporary_metadata_index_name_dataset_prefix]}-%{[@metadata][temporary_metadata_index_name_dataset_suffix]}"
           #action => "create"
         
           id => "output-elasticsearch-47420e6931e4"
@@ -80,7 +80,7 @@ output {
           #user => "$USER"
           #password => "$PASSWORD"
         
-          index => "<%{[@metadata][temporary_metadata_index_name_prefix]}-%{[@metadata][temporary_metadata_index_name_suffix]}-{now/d}>"
+          index => "<%{[@metadata][temporary_metadata_index_name_dataset_prefix]}-%{[@metadata][temporary_metadata_index_name_dataset_suffix]}-{now/d}>"
           #action => "create"
           manage_template => false
           ilm_enabled => auto # if receiving logstash 403 auth error, then change to false if related to logstash trying to "auto" manage the "logstash-*" index

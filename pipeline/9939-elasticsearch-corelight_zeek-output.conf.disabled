@@ -7,7 +7,7 @@
 
 output {
   if [@metadata][z_no_reuse][event_type] == "corelight" {
-    if [@metadata][temporary_metadata_index_strategy] == "datastream" {
+    #if [@metadata][temporary_metadata_index_strategy] == "datastream" {
       elasticsearch {
         hosts => [ "127.0.0.1:9200" ]
         #ssl => true
@@ -17,33 +17,36 @@ output {
         #password => "$PASSWORD"
         
         # Use data streams via data stream auto_routing, supported only in logstash => 7.13
-        #data_stream => "true"
-        #data_stream_auto_routing => "true"
+        data_stream => "auto"
+        data_stream_auto_routing => "true"
+        data_stream_sync_fields => "true"
+
+        manage_template => false
         
         # Use data streams via default index method, supported all versions
-        #index => "%{[@metadata][temporary_metadata_index_name_prefix]}-%{[@metadata][temporary_metadata_index_name_suffix]}"
-        #action => "create"
+        index => "[@metadata][temporary_metadata_index_name_type]-%{[@metadata][temporary_metadata_index_name_dataset_prefix]}.%{[@metadata][temporary_metadata_index_name_dataset_suffix]}"
+        action => "create"
         
         id => "output-elasticsearch-47420e6931e4"
       }
-    }
-    else {
-      elasticsearch {
-        hosts => [ "127.0.0.1:9200" ]
-        #ssl => true
-        #ssl_certificate_verification => false
-        #cacert => "$path"
-        #user => "$USER"
-        #password => "$PASSWORD"
-        
-        index => "<%{[@metadata][temporary_metadata_index_name_prefix]}-%{[@metadata][temporary_metadata_index_name_suffix]}-{now/d}>"
-        #action => "create"
-        manage_template => false
-        ilm_enabled => auto # if receiving logstash 403 auth error, then change to false if related to logstash trying to "auto" manage the "logstash-*" index
-        #ilm_rollover_alias => "index_alias_name_for_rollover"
-        #ilm_pattern => "example-{now/d}-000001"
-        id => "output-elasticsearch-5cca0e05c17d"
-      }
-    }
+    #}
+    #else {
+    #  elasticsearch {
+    #    hosts => [ "127.0.0.1:9200" ]
+    #    #ssl => true
+    #    #ssl_certificate_verification => false
+    #    #cacert => "$path"
+    #    #user => "$USER"
+    #    #password => "$PASSWORD"
+    #
+    #    index => "<%{[@metadata][temporary_metadata_index_name_dataset_prefix]}-%{[@metadata][temporary_metadata_index_name_dataset_suffix]}-{now/d}>"
+    #    #action => "create"
+    #    manage_template => false
+    #    ilm_enabled => auto # if receiving logstash 403 auth error, then change to false if related to logstash trying to "auto" manage the "logstash-*" index
+    #    #ilm_rollover_alias => "index_alias_name_for_rollover"
+    #    #ilm_pattern => "example-{now/d}-000001"
+    #    id => "output-elasticsearch-5cca0e05c17d"
+    #  }
+    #}
   }
 }
