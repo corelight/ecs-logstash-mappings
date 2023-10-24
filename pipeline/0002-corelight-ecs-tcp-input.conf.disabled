@@ -7,8 +7,13 @@
 
 input {
   tcp {
+    host => "0.0.0.0" #default: "0.0.0.0"
+    port => 8615
+    ssl_enable = false
+
     dns_reverse_lookup_enabled => false
-    port => 8515
+    proxy_protocol => false #default: false
+    tcp_keep_alive => false #default: false
 
     ################ Required fields, do not modify these ################
     codec => "json"

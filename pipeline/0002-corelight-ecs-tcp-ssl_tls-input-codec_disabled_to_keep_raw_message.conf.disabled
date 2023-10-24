@@ -7,10 +7,10 @@
 
 input {
   tcp {
+    host => "0.0.0.0" #default: "0.0.0.0"
     port => 8615
-    #codec => "json"
     ssl_enable = true
-    
+
     #### SSL/TLS Parameters to change and set
     # Path to certificate in PEM format. This certificate will be presented to the connecting clients.
     ssl_cert => "system path to cert"
@@ -23,9 +23,13 @@ input {
     # Validate client certificate or certificate chain against these authorities. You can define multiple files or paths. All the certificates will be read and added to the trust store.
     #ssl_certificate_authorities => [ "system file path" ]
 
-    ################ Required fields, do not modify these ################
-    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
     dns_reverse_lookup_enabled => false
+    proxy_protocol => false #default: false
+    tcp_keep_alive => false #default: false
+
+    ################ Required fields, do not modify these ################
+    #codec => "json"
+    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "tcp"
       "[@metadata][z_no_reuse][event_type]" => "corelight"

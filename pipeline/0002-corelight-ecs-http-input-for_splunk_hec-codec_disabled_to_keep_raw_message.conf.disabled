@@ -14,8 +14,8 @@ input {
     #ssl_verify_mode => "none"
 
     ################ Required fields, do not modify these ################
-    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
     #codec => "json"
+    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "http"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
