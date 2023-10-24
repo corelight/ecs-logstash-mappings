@@ -7,10 +7,12 @@
 
 input {
   tcp {
-    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
     dns_reverse_lookup_enabled => false
     port => 8515
+
+    ################ Required fields, do not modify these ################
     codec => "json"
+    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "tcp"
       "[@metadata][etl][format_is_json]" => "true"
@@ -19,6 +21,7 @@ input {
       "[@metadata][z_no_reuse][event_type]" => "corelight"
       "[@metadata][etl][pipeline]" => "input-tcp-8782041b68e4-20220310.01"
     }
+    ################ END Required fields, do not modify these ################
     id => "input-tcp-8782041b68e4"
   }
 }

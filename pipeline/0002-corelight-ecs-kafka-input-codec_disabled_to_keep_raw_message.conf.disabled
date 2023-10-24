@@ -7,51 +7,66 @@
 
 input {
   kafka {
-    # Topic Consumption #
+    ################## Topics ##################
     # Topic(s) to consume from
     #topics => [ "corelight" ]
     #:Example:# to consume topics based on regex. This will consume from all topics starting with "corelight_" except if followed by conn,ssl,files,x509,http,dns
-    #topics_pattern => "corelight_(?!(conn|ssl|files|x509|http|dns)$).*" 
+    #topics_pattern => "corelight_(?!(conn|ssl|files|x509|http|dns)$).*"
     #:Example:# to consume topics based on regex. This will consume from all topics starting with "corelight_" and if only followed by conn,ssl,files,x509,http,dns
-    #topics_pattern => "corelight_(conn|ssl|files|x509|http|dns).*" 
-    
+    #topics_pattern => "corelight_(conn|ssl|files|x509|http|dns).*"
+
+    ################## Consumer Threads ##################
     # This setting should match the number of Kafka partitions for the topic(s) you are consuming from.
     # Change this if you have customized the number of kafka partitions for the topic AND are needing to scale (up) consumption
     # Read documentation for more info: https://www.elastic.co/guide/en/logstash/current/plugins-inputs-kafka.html#plugins-inputs-kafka-consumer_threads
     consumer_threads => 3
+
+    ################## Kafka Servers ##################
     #bootstrap_servers => "localhost:9092"
     #bootstrap_servers => "localhost:9092,localhost:9093,localhost:9094" #:Example:# kafka (cluster) with multiple nodes
-    # decorate_events requires kafka plugin 10.7.3
-    decorate_events => "extended"
-    #:default:# decorate_events => "none"
-    #codec => "json"
-    max_poll_records => 500
-    enable_auto_commit => true
-    auto_offset_reset => "earliest"
+
+
     # Set to the naming convention that best suites your environment
     group_id => "logstash_corelight_group"
     # Set unique per logstash instance
     client_id => "logstash_consumer"
-    # Default values for (certain) settings. Annotated by "#:default:#". Only used as FYSA (for your situational awareness)
-    #:default:# auto_commit_interval_ms => 5000 #5 seconds
-    #:default:# connections_max_idle_ms => 540000 #9 minutes
-    #:default:# consumer_threads => 1 
-    #:default:# decorate_events => "none"
-    #:default:# heartbeat_interval_ms => 3000 #3 seconds
-    #:default:# max_poll_interval_ms => 300000 #5 minutes
-    #:default:# max_poll_records => 500
-    #:default:# partition_assignment_strategy => "" #none
-    #:default:# poll_timeout_ms => 100 #.1 seconds
-    #:default:# receive_buffer_bytes => 32768 #32KB
-    #:default:# reconnect_backoff_ms => 50 #.005 seconds
-    #:default:# request_timeout_ms => 40000 #4 seconds
-    #:default:# retry_backoff_ms => 100 #.1 seconds
-    #:default:# session_timeout_ms => 10000 #10 seconds
+
+
+    auto_offset_reset => "earliest"
+    decorate_events => "extended" #default: none
+    enable_auto_commit => true
+    max_poll_records => 500 #default: 500
+
+    #fetch_min_bytes => "" #default: none
+    #group_instance_id => "" #default: none
+    auto_commit_interval_ms => 5000 #default: 5000 #5 seconds
+    check_crcs => true #default: true
+    client_dns_lookup => "default" #default: default
+    connections_max_idle_ms => 540000 #default: 540000 #9 minutes
+    fetch_max_bytes => 52428800 #default: 52428800 #50MB
+    fetch_max_wait_ms => 500 #default: 500 #.5 seconds
+    heartbeat_interval_ms => 3000 #default: 3000 #3 seconds
+    max_partition_fetch_bytes => 1048576 #default: 1048576 #1MB
+    max_poll_interval_ms => 300000 #default: 300000 #5 minutes
+    metadata_max_age_ms => 300000 #default: 300000 #5 minutes
+    partition_assignment_strategy => "" #default: "" #none
+    poll_timeout_ms => 100 #default: 100 #.1 seconds
+    receive_buffer_bytes => 32768 #default: 32768 #32KB
+    reconnect_backoff_ms => 50 #default: 50 #.005 seconds
+    request_timeout_ms => 40000 #default: 40000 #4 seconds
+    retry_backoff_ms => 100 #default: 100 #.1 seconds
+    security_protocol => "PLAINTEXT" #default: PLAINTEXT
+    send_buffer_bytes => 131072 #default 131072 #128KB
+    session_timeout_ms => 10000 #default: 10000 #10 seconds
+
+    ################ Required fields, do not modify these ################
+    #codec => "json"
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "kafka"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
       "[@metadata][etl][pipeline]" => "input-kafka-58e9c96224f4-20220310.01"
     }
+    ################ END Required fields, do not modify these ################
     id => "input-kafka-58e9c96224f4"
   }
 }

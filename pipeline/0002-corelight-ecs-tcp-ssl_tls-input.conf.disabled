@@ -24,7 +24,8 @@ input {
     #ssl_verify = false
     # Validate client certificate or certificate chain against these authorities. You can define multiple files or paths. All the certificates will be read and added to the trust store.
     #ssl_certificate_authorities => [ "system file path" ]
-    
+
+    ################ Required fields, do not modify these ################
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "tcp"
       "[@metadata][etl][format_is_json]" => "true"
@@ -33,6 +34,7 @@ input {
       "[@metadata][z_no_reuse][event_type]" => "corelight"
       "[@metadata][etl][pipeline]" => "input-tcp-ssl-e8415188ada6-20220707.01"
     }
+    ################ END Required fields, do not modify these ################
     id => "input-tcp-ssl-e8415188ada6"
   }
 }
