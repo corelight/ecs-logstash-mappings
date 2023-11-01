@@ -7,11 +7,11 @@
 
 input {
   http {
-    port => 8443
-    #ssl => true
-    #ssl_certificate => "$PATH"
-    #ssl_key => "$PATH"
-    #ssl_verify_mode => "none"
+    port => "${LS_INPUT_HTTP_PORT}" #8443
+    #ssl => "${LS_INPUT_HTTP_SSL}"
+    #ssl_certificate => "${LS_INPUT_HTTP_SSL_CERTIFICATE}"
+    #ssl_key => "${LS_INPUT_HTTP_PORT}"
+    #ssl_verify_mode => "${LS_INPUT_HTTP_SSL_VERIFY_MODE}"
 
     ################ Required fields, do not modify these ################
     #codec => "json"

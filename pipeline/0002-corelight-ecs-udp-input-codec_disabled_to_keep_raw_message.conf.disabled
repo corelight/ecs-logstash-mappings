@@ -7,13 +7,13 @@
 
 input {
   udp {
-    host => "0.0.0.0" #default: "0.0.0.0"
-    port => 8516
-    queue_size => 15000 #default: 2000
-    workers => 2 #default: 2
-    buffer_size => 65536 #default: 65536
-    #receive_buffer_bytes => "" #default none
-    #source_ip_fieldname => ""
+    host => "${LS_INPUT_UDP_HOST}" #"0.0.0.0" #default: "0.0.0.0"
+    port => "${LS_INPUT_UDP_PORT}"#8516
+    queue_size => "${LS_INPUT_UDP_QUEUE_SIZE}" #15000 #default: 2000
+    workers => "${LS_INPUT_UDP_WORKERS}" #2 #default: 2
+    buffer_size => "${LS_INPUT_UDP_BUFFER_SIZE}" #65536 #default: 65536
+    #receive_buffer_bytes => "${LS_INPUT_UDP_RECEIVE_BUFFER_BYTES}" #"" #default none
+    #source_ip_fieldname => "${LS_INPUT_UDP_source_ip_fieldname}" #""
 
     ################ Required fields, do not modify these ################
     #codec => "json"
