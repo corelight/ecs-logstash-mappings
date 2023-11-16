@@ -20,3 +20,9 @@ https://github.com/brasitech/ecs-logstash-mappings
 ## Ingest Pipelines
 https://github.com/brasitech/ecs-mapping
 - Ingest pipeline configurations
+
+## Kibana Dashboards and Visualizations
+https://github.com/corelight/ecs-dashboards
+
+## Kibana Security Rules and Alerts
+https://github.com/corelight/Elasticsearch_rules
