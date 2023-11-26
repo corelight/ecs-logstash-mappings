@@ -36,7 +36,7 @@ input {
       "[@metadata][etl][format_applied]" => "json"
       "[@metadata][etl][format_final_codec]" => "json"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-tcp-ssl-e8415188ada6-20220707.01"
+      "[@metadata][etl][pipeline]" => "input-tcp-ssl-e8415188ada6-2023120101"
     }
     ################ END Required fields, do not modify these ################
     id => "input-tcp-ssl-e8415188ada6"

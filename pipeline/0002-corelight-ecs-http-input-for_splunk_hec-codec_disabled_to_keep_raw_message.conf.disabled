@@ -19,7 +19,7 @@ input {
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "http"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-http-09996722cf53-20220622.01"
+      "[@metadata][etl][pipeline]" => "input-http-09996722cf53-2023120101"
     }
     ################ END Required fields, do not modify these ################
     id => "input-http-09996722cf53"

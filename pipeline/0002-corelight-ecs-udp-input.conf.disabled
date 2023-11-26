@@ -24,7 +24,7 @@ input {
       "[@metadata][etl][format_applied]" => "json"
       "[@metadata][etl][format_final_codec]" => "json"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-udp-710620f0c005-20220428.01"
+      "[@metadata][etl][pipeline]" => "input-udp-710620f0c005-2023120101"
     }
     ################ END Required fields, do not modify these ################
     id => "input-udp-710620f0c005"

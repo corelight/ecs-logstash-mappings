@@ -33,7 +33,7 @@ input {
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "tcp"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-tcp-ssl-c341de6acffd-20220707.01"
+      "[@metadata][etl][pipeline]" => "input-tcp-ssl-c341de6acffd-2023120101"
     }
     ################ END Required fields, do not modify these ################
     id => "input-tcp-ssl-c341de6acffd"

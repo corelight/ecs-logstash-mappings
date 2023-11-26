@@ -21,7 +21,7 @@ input {
     add_field => {
       "[@metadata][etl][input_application_protocol]" => "udp"
       "[@metadata][z_no_reuse][event_type]" => "corelight"
-      "[@metadata][etl][pipeline]" => "input-udp-2ee546f22e4d-20220428.01"
+      "[@metadata][etl][pipeline]" => "input-udp-2ee546f22e4d-2023120101"
     }
     ################ END Required fields, do not modify these ################
     id => "input-udp-2ee546f22e4d"
