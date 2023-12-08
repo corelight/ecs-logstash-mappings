@@ -1,0 +1,27 @@
+# Corelight ECS Logstash Pipeline
+# Git Repository: https://github.com/corelight/ecs-logstash-mappings
+# Authors: Corelight Inc, Brasi Tech LLC
+# License: BSD 3-Clause
+# Support: https://github.com/corelight/ecs-logstash-mappings/issues/new
+# Releases: https://github.com/corelight/ecs-logstash-mappings/releases
+
+input {
+  http {
+    port => "${LS_INPUT_HTTP_PORT}" #8443
+    #ssl => "${LS_INPUT_HTTP_SSL}"
+    #ssl_certificate => "${LS_INPUT_HTTP_SSL_CERTIFICATE}"
+    #ssl_key => "${LS_INPUT_HTTP_PORT}"
+    #ssl_verify_mode => "${LS_INPUT_HTTP_SSL_VERIFY_MODE}"
+
+    ################ Required fields, do not modify these ################
+    #codec => "json"
+    ecs_compatibility => "disabled" # If using logstash version 7.17.0 or higher or 8.0.0 or higher, uncomment this line
+    add_field => {
+      "[@metadata][etl][input_application_protocol]" => "http"
+      "[@metadata][z_no_reuse][event_type]" => "corelight"
+      "[@metadata][etl][pipeline]" => "input-http-09996722cf53-2023120101"
+    }
+    ################ END Required fields, do not modify these ################
+    id => "input-http-09996722cf53"
+  }
+}
