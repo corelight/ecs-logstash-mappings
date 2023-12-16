@@ -11,7 +11,7 @@ filter {
       "[@metadata][kafka]" => "[labels][etl][kafka]"
     }
     add_field => {
-      "[@metadata][etl][pipeline]" => "filter-mutate-69f09ac20217-20220407.01"
+      "[@metadata][etl][pipeline]" => "filter-mutate-69f09ac20217-2023120101"
     }
     tag_on_failure => "_mutate_error-69f09ac20217"
     id => "filter-mutate-69f09ac20217"
