@@ -1,6 +1,8 @@
 # Corelight ECS Logstash Pipeline
-The repository is compromised of Ingest Pipeline files required to be used with the repository  
+The repository is compromised of Logstash Pipeline files required to be used with the installer script in the repository  
 https://github.com/corelight/ecs-templates
+
+The installer in that repository will download the files from this repository therefore using this repository directly is not required nor recommended.
 
 # License
 The files and automation script are open-source under a BSD license. See ``COPYING``for details.
