@@ -1,0 +1,68 @@
+# Corelight ECS Logstash Pipeline
+# Git Repository: https://github.com/corelight/ecs-logstash-mappings
+# Authors: Corelight Inc, Brasi Tech LLC
+# License: BSD 3-Clause
+# Support: https://github.com/corelight/ecs-logstash-mappings/issues/new
+# Releases: https://github.com/corelight/ecs-logstash-mappings/releases
+
+#Do not enable this pipeline unless you want new fields that show URL/Destination 
+# domain with new fields no port this will not update existing fields 
+#as we do not want to case a problem
+
+filter {
+  if [destination][domain] {
+
+  ruby {
+    code => '
+      domain = event.get("[destination][domain]")
+	domain_has_colon = domain.include?(":")
+        if domain_has_colon
+          #split on ":" then take [0] for the domain
+          domain_split = domain.split(":")
+	  if domain_split.length == 2
+	    port_temp = domain_split[1]
+ 	    port = port_temp.to_i
+ 	    if port.between?(1,65535)
+             domain = domain_split[0] 
+             event.set("[destination][domain_noport]", domain)
+	    end
+	end
+      end  
+  '
+  add_field => { 
+    "[@metadata][etl][pipeline]" => "filter-ruby-B886EEA032FD-2024031801"
+  }
+  tag_on_exception => "_rubyexception-B886EEA032FD-2024031801"
+  tag_with_exception_message => true
+  id => "filter-mutate-B886EEA032FD"
+  }
+}
+if [url][domain] {
+
+ruby {
+  code=> '
+    urldomain = event.get("[url][domain]")
+    urldomain_has_colon = urldomain.include?(":")
+    if urldomain_has_colon
+       urldomain_split = urldomain.split(":")
+       if urldomain_split.length == 2
+	  port_temp = urldomain_split[1]
+          port = port_temp.to_i
+	  if port.between?(1,65535)
+	    url = urldomain_split[0]
+	    event.set("[url][domain_noport]", url)
+	  end
+	end
+     end
+
+  '
+  add_field => { 
+    "[@metadata][etl][pipeline]" => "filter-ruby-0D6524C10900-2024031901"
+  }
+  tag_on_exception => "_rubyexception-0D6524C10900-2024031901"
+  tag_with_exception_message => true
+  id => "filter-mutate-0D6524C10900"
+}
+}
+}
+
