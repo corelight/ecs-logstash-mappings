@@ -64,7 +64,8 @@ ruby {
   tag_with_exception_message => true
   id => "filter-mutate-0D6524C10900"
 }
-if [destination][top_leval_domain] {
+}
+if [destination][top_level_domain] {
 
 ruby {
   code=> '
