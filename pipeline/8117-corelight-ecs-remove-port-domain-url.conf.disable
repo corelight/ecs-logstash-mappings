@@ -27,7 +27,8 @@ filter {
              event.set("[destination][domain_noport]", domain)
 	    end
 	end
-      end  
+      end
+    
   '
   add_field => { 
     "[@metadata][etl][pipeline]" => "filter-ruby-B886EEA032FD-2024031801"
@@ -54,7 +55,7 @@ ruby {
 	  end
 	end
      end
-
+    
   '
   add_field => { 
     "[@metadata][etl][pipeline]" => "filter-ruby-0D6524C10900-2024031901"
@@ -62,6 +63,33 @@ ruby {
   tag_on_exception => "_rubyexception-0D6524C10900-2024031901"
   tag_with_exception_message => true
   id => "filter-mutate-0D6524C10900"
+}
+}
+if [destination][top_level_domain] {
+
+ruby {
+  code=> '
+    urldomain = event.get("[destination][top_level_domain]")
+    urldomain_has_colon = urldomain.include?(":")
+    if urldomain_has_colon
+       urldomain_split = urldomain.split(":")
+       if urldomain_split.length == 2
+	  port_temp = urldomain_split[1]
+          port = port_temp.to_i
+	  if port.between?(1,65535)
+	    url = urldomain_split[0]
+	    event.set("[destination][top_level_domain_noport]", url)
+	  end
+	end
+     end
+    
+  '
+  add_field => { 
+    "[@metadata][etl][pipeline]" => "filter-ruby-875eed8e92df0-2024100901"
+  }
+  tag_on_exception => "_rubyexception-875eed8e92df-2024100901"
+  tag_with_exception_message => true
+  id => "filter-mutate-875eed8e92df"
 }
 }
 }
