@@ -30,18 +30,21 @@ filter {
 	end
   domain_ends_with_integer = /[0-9]$/ === domain
   if !domain_ends_with_integer
-    domain_split = domain.split(".")
-    domain_total_levels = domain_split.length
-    domain_lev1_name = domain_split[-1]
-    domain_lev2_name = domain_split[-2]
-    domain_nest = { :"level_1" => { :"name" => domain_lev1_name, :"length" => domain_lev1_name.length } }
-    domain_lev2_ends_with_integer = /[0-9]$/ === domain_lev2_name
-    domain_nest.merge! :"level_2" => { :"ends_with_integer" => domain_lev2_ends_with_integer, :"name" => domain_lev2_name, :"length" => domain_lev2_name.length }
+    if domain.include? "."
+      domain_split = domain.split(".")
+      domain_total_levels = domain_split.length
+      domain_lev1_name = domain_split[-1]
+      domain_lev2_name = domain_split[-2]
+      domain_nest = { :"level_1" => { :"name" => domain_lev1_name, :"length" => domain_lev1_name.length } }
+      domain_lev2_ends_with_integer = /[0-9]$/ === domain_lev2_name
+      domain_nest.merge! :"level_2" => { :"ends_with_integer" => domain_lev2_ends_with_integer, :"name" => domain_lev2_name, :"length" => domain_lev2_name.length }
     
-    # Level 1+2 Name
-    domain_1n2_name = domain_lev2_name + "." + domain_lev1_name
-    domain_nest.merge! :"1n2_name" => domain_1n2_name
-    event.set("[temporary_domain_nest]", domain_nest)
+      # Level 1+2 Name
+      domain_1n2_name = domain_lev2_name + "." + domain_lev1_name
+      domain_nest.merge! :"1n2_name" => domain_1n2_name
+      event.set("[temporary_domain_nest]", domain_nest)
+    end  
+
   end
     '
   add_field => { 
